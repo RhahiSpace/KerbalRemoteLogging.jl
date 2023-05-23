@@ -10,7 +10,7 @@ makedocs(;
     sitename="KerbalRemoteLogging.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://RhahiSpace.github.io/KerbalRemoteLogging.jl",
+        canonical="https://docs.rhahi.space/RemoteLogging",
         edit_link="main",
         assets=String[],
     ),
@@ -22,4 +22,5 @@ makedocs(;
 deploydocs(;
     repo="github.com/RhahiSpace/KerbalRemoteLogging.jl",
     devbranch="main",
+    dirname="KerbalRemoteLogging",
 )
