@@ -96,7 +96,7 @@ function kerbal_log_group(group, level)
 end
 
 function get_default_file_groups()
-    Dict{String, Vector{Symbol}}(
+    Dict{String, Tuple{Vararg{Symbol}}}(
         "time" => (:time, ),
         "guidance" => (:guidance,),
         "system" => (:system,),
