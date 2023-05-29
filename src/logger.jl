@@ -47,6 +47,8 @@ function KerbalRemoteLogger(;
     data_directory::String = disk_directory,
     data_groups::Tuple{Vararg{Symbol}} = (),
 )
+    disk_directory !== "" && mkpath(disk_directory)
+    data_directory !== "" && mkpath(data_directory)
     remote = RemoteLogger(;
         host=host,
         port=port,
