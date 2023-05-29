@@ -38,7 +38,7 @@ function KerbalRemoteLogger(;
     disk_loglevel::LogLevel = LogLevel(-1000),
     disk_formatter::Function = kerbal_disk_formatter(timestring),
     disk_directory::String = "",
-    disk_groups::Dict{String, Vector{Symbol}} = Dict{String, Vector{Symbol}}(),
+    disk_groups::Dict{String,Vector{Symbol}} = default_disk_group(),
     disk_exclude_group::Tuple{Vararg{Symbol}} = (:ProgressLogging,:nosave,),
     disk_exclude_module::Tuple{Vararg{Symbol}} = console_exclude_module,
 
@@ -55,7 +55,7 @@ function KerbalRemoteLogger(;
         displaywidth=console_displaywidth,
         loglevel=console_loglevel,
         formatter=console_formatter(timestring),
-        exclude_group=console_exclude_group,
+        exclude_group=(console_exclude_group..., data_groups...),
         exclude_module=console_exclude_module,
     )
     disk = nothing
@@ -65,8 +65,7 @@ function KerbalRemoteLogger(;
             formatter = disk_formatter,
             directory = disk_directory,
             disk_groups = disk_groups,
-            data_groups = data_groups,
-            exclude_group = disk_exclude_group,
+            exclude_group = (disk_exclude_group..., data_groups...),
             exclude_module = disk_exclude_module,
         )
     end
