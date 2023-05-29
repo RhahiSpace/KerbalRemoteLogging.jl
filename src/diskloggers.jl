@@ -7,7 +7,6 @@ function DiskLogger(;
     formatter::Function = default_disk_formatter,
     directory::String = pwd(),
     disk_groups::Dict{String, Vector{Symbol}} = Dict{String, Vector{Symbol}}(),
-    data_groups::Tuple{Vararg{Symbol}} = (),
     exclude_group::Tuple{Vararg{Symbol}} = (:nosave,),
     exclude_module::Tuple{Vararg{Symbol}} = console_exclude_module,
 )
@@ -30,7 +29,7 @@ function DiskLogger(;
     end
     push!(loggers, remaining)
     logger = TeeLogger(loggers...)
-    logger = group_module_filter(logger, (exclude_group..., data_groups...), exclude_module)
+    logger = group_module_filter(logger, exclude_group, exclude_module)
     logger = MinLevelLogger(logger, loglevel)
     return DiskLogger(logger)
 end
