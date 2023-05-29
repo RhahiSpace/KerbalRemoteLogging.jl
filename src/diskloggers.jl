@@ -22,7 +22,7 @@ function DiskLogger(;
         grouped = EarlyFilteredLogger(sink) do log
             log.group ∈ groups ? true : false
         end
-        remaining = EarlyFilteredLogger(remaining) do
+        remaining = EarlyFilteredLogger(remaining) do log
             log.group ∉ groups ? true : false
         end
         push!(loggers, grouped)
