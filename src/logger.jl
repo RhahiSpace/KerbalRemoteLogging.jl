@@ -31,7 +31,7 @@ function KerbalRemoteLogger(;
 
     console_displaywidth::Integer=80,
     console_loglevel::LogLevel = LogLevel(-1),
-    console_formatter::Union{Function, Nothing} = kerbal_formatter,
+    console_formatter::Union{Function,Nothing} = kerbal_formatter,
     console_exclude_group::Tuple{Vararg{Symbol}} = (:ProgressLogging,),
     console_exclude_module::Tuple{Vararg{Symbol}} = (:ProtoBuf,),
 
