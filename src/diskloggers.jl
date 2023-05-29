@@ -79,3 +79,11 @@ function default_data_formatter(path::String)
         end
     end
 end
+
+function default_disk_group()
+    Dict{String, Vector{Symbol}}(
+        "flight" => [:guidance, :gnc, :dynamics, :rangesafety, :rendezvous, :trajectory, :mark, :status],
+        "internals" => [:eecom, :prop, :retro, :power, :system, :module],
+        "develop" => [:develop, :entry, :exit, :loop, :gui, :graphic],
+    )
+end
