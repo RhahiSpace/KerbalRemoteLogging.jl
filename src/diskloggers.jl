@@ -12,15 +12,15 @@ function DiskLogger(;
     exclude_module::Tuple{Vararg{Symbol}} = console_exclude_module,
 )
     loggers = Vector{Union{FormatLogger,EarlyFilteredLogger}}()
-    everything = formatter("$directory/all")
-    remaining = formatter("$directory/default")
+    everything = formatter("$directory/all.log")
+    remaining = formatter("$directory/default.log")
     push!(loggers, everything)
     for (name, groups) in disk_groups
         if name in ("default", "all")
             continue
         end
-        sink = formatter("$directory/$name")
-        grouped = EarlyFilteredLogger(sink) do
+        sink = formatter("$directory/$name.log")
+        grouped = EarlyFilteredLogger(sink) do log
             log.group ∈ groups ? true : false
         end
         remaining = EarlyFilteredLogger(remaining) do
@@ -57,7 +57,7 @@ function DataLogger(;
 )
     loggers = Vector{EarlyFilteredLogger}()
     for group ∈ groups
-        file = formatter("$directory/$(group)")
+        file = formatter("$directory/$(group).data")
         logger = EarlyFilteredLogger(file) do log
             log.group ∈ groups ? true : false
         end
